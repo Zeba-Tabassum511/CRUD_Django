@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+        <title>Demo_App</title>
+        <link rel="stylesheet" href="{% static 'test_app_css/bootstrap.css' %}">
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h2 class="text-center alert-danger">Test Application for Crud Operations!</h2>
+            <form action="" method="POST" enctype="multipart/form-data">
+            
+                {% csrf_token %}
+            
+            </form>
+            {%block content%}{%endblock content%}
+
+
+        </div>
+        <!-- <script src="{% static 'test_app_js/bootstrap.js' %}"></script>   -->
+        <!-- <script src="{% static 'test_app_js/popper.js' %}"></script> -->
+    </body>
+</html>

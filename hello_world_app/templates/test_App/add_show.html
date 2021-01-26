@@ -1,0 +1,61 @@
+{%extends 'test_app/base.html'%}
+{%block content %}
+<div class="row">
+    <div class="col-sm-4">
+        <h4 class="text-center alert-info">Add New Data</h4>
+        <form action="" method="POST">
+        {%csrf_token%}
+        {{form.as_p}}
+        <input type="submit" class = "btn btn-success" value="ADD">
+        </form>
+    </div>
+    <div class="col-sm-8">
+        <h4 class="text-center alert alert-info">Information</h4>
+        {% if stu %}
+        <h4>Table Data</h4>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">name</th>
+                    <th scope="col">brand_name</th>
+                    <th scope="col">regular_price_value</th>
+                    <th scope="col">offer_price_value</th>
+                    <th scope="col">classification_l1</th>
+                    <th scope="col">classification_l2</th>
+                    <th scope="col">classification_l3</th>
+                    <th scope="col">classification_l4</th>
+                    <th scope="col">image_url</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                    {%for st in stu%}
+                <tr>
+                    <th scope="row">{{st.id}}</th>
+                    <td>{{st.name}}</td>
+                    <td>{{st.brand_name}}</td>
+                    <td>{{st.regular_price_value}}</td>
+                    <td>{{st.offer_price_value}}</td>
+                    <td>{{st.classification_l1}}</td>
+                    <td>{{st.classification_l2}}</td>
+                    <td>{{st.classification_l3}}</td>
+                    <td>{{st.classification_l4}}</td>
+                    <td>{{st.image_url}}</td>
+                    <td>
+                        <a href="{% url 'updatedata' st.id%}" class="btn btn-warning btn sm">Edit</a>
+                        <form action="{%url 'deletedata' st.id %}" method="POST" class="d-inline">{%csrf_token%}
+                            <input type="submit" class = "btn btn-danger" value="Delete"> 
+                        </form>
+                    </td>
+                </tr>
+                {%endfor %}
+                </tbody>
+            </table>
+        
+        {%else%}
+        <h4>No Records Found</h4>
+        {%endif%}
+    </div>
+</div>
+{%endblock content %}
